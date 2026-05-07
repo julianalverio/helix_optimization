@@ -1,0 +1,21 @@
+[submodule "twistr/external/Protenix"]
+	path = twistr/external/Protenix
+	url = https://github.com/bytedance/Protenix
+[submodule "twistr/external/FAFE"]
+	path = twistr/external/FAFE
+	url = https://github.com/mooninrain/FAFE
+[submodule "twistr/external/alphafold"]
+	path = twistr/external/alphafold
+	url = https://github.com/google-deepmind/alphafold
+[submodule "twistr/external/PXDesign"]
+	path = twistr/external/PXDesign
+	url = https://github.com/bytedance/PXDesign
+[submodule "twistr/external/masif"]
+	path = twistr/external/masif
+	url = https://github.com/LPDI-EPFL/masif.git
+[submodule "twistr/external/masif-dockerfile"]
+	path = twistr/external/masif-dockerfile
+	url = https://github.com/LPDI-EPFL/masif-dockerfile
+[submodule "twistr/external/ScanNet"]
+	path = twistr/external/ScanNet
+	url = https://github.com/jertubiana/ScanNet.git

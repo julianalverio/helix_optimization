@@ -1,0 +1,36 @@
+pdb_dir: data/pdb
+output_path: data/epitopes/patches.parquet
+work_dir: data/epitopes/work
+
+# Pre-MaSIF residue filter
+helix_codes: [H, G]
+core_min_relative_sasa: 0.3
+halo_distance_a: 6.0
+halo_min_relative_sasa: 0.15
+
+# Residue-level patch construction (post-MaSIF)
+vertex_to_residue_distance_a: 4.0       # used both for residue scoring + re-extraction
+score_aggregation_min_vertices: 3       # MaSIF-unsupported below this
+helix_face_offsets: [3, 4, 7, 8]        # |i-j| for helix-face edges within a segment
+spatial_sidechain_distance_a: 5.0       # min side-chain heavy-atom distance for spatial edges
+
+# Graph-node thresholds (split by class)
+helix_node_score_threshold: 0.55        # core (helix + rSASA ≥ 0.30) → node above this
+halo_node_score_threshold: 0.50         # halo (immediate neighbor) → node above this
+
+# Patch-acceptance thresholds
+core_score_threshold: 0.70              # 2-anchor "both ≥ this"
+strong_score_threshold: 0.85            # patch must contain ≥ 1 anchor at this
+mean_anchor_score_threshold: 0.55       # ≥ 3-anchor first-pass mean
+
+# Component / expanded gates
+component_min_anchor_residues: 2        # min component anchors (allows i/i+4 seeds)
+expanded_patch_min_residues: 5          # min |residue_ids| (re-extracted)
+patch_residue_min_relative_sasa: 0.15   # rSASA floor for re-extracted residues
+
+# Opt-in stricter mode for ≥ 3-anchor patches (mean ≥ 0.60 + ≥ 2 anchors ≥ 0.70)
+strict_mode: false
+
+# MaSIF docker
+masif_image: pablogainza/masif:latest
+masif_platform: linux/amd64

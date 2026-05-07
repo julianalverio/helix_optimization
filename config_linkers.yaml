@@ -1,0 +1,32 @@
+# Inputs (3 PDBs in a shared coordinate frame)
+framework_pdb: data/linkers/test/framework.pdb
+helix1_pdb:    data/linkers/test/helix1.pdb
+helix2_pdb:    data/linkers/test/helix2.pdb
+
+# Where on the framework chain helix1 / helix2 are inserted.
+# `cut_before` = last framework PDB residue kept before the helix.
+# `cut_after`  = first framework PDB residue kept after the helix.
+# Residues strictly between cut_before and cut_after are discarded.
+window1: { cut_before: 12, cut_after: 31 }   # helix1 between framework[1..12] and framework[31..40]
+window2: { cut_before: 40, cut_after: 59 }   # helix2 between framework[31..40] and framework[59..65]
+
+# Number of residues designed in each linker.
+lengths:
+  linker1: 4   # F1 -> helix1
+  linker2: 4   # helix1 -> F2
+  linker3: 4   # F2 -> helix2
+  linker4: 4   # helix2 -> F3
+
+# Design knobs
+linker_aa_whitelist: AGSDNTPQEKR
+nstruct: 20             # designs per linker (4 separate Remodel jobs)
+num_trajectory: 20      # centroid trajectories per nstruct attempt
+context_residues: 5     # flanking anchor residues included in each per-linker sub-pose
+seed: 0                 # rng seed for the random per-linker order shuffle
+
+# Output
+output_dir: data/linkers/designs
+
+# Isolated PyRosetta interpreter (created by `uv venv --python 3.11 .venv-rosetta`
+# then `uv pip install --python .venv-rosetta/bin/python <pyrosetta-wheel-url>`)
+rosetta_python: .venv-rosetta/bin/python

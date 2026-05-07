@@ -1,0 +1,20 @@
+masif_parquet: data/epitopes/patches.parquet
+pdb_dir: data/pdb
+output_path: data/epitopes/patches_scannet.parquet
+work_dir: data/epitopes/scannet_work
+
+# ScanNet model
+scannet_image: jertubiana/scannet
+scannet_platform: linux/amd64
+scannet_mode: epitope        # interface | epitope | idp
+scannet_assembly: true
+
+# Patch filter — ScanNet is used for *ranking* not rejection. The only
+# rejection is the structural sanity gate `patch_min_residues`. The other
+# fields stay in the dataclass schema (so the loader doesn't trip) but are
+# zeroed out so they never reject.
+residue_positive_threshold: 0.5
+patch_min_mean_score: 0.0
+patch_min_positive_fraction: 0.0
+patch_min_max_score: 0.0
+patch_min_residues: 5

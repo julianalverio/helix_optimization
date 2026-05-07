@@ -1,0 +1,23 @@
+methods_allowed: ["X-RAY DIFFRACTION", "ELECTRON MICROSCOPY"]
+resolution_max_xray: 3.5
+resolution_max_em: 3.5
+r_free_max_xray: 0.30
+r_free_missing_action: keep_and_tag
+status_allowed: ["REL"]
+min_protein_chain_length: 20
+min_instantiated_polymer_chains: 2
+require_protein_chain: true
+min_observed_fraction: 0.5
+large_assembly_chain_threshold: 20
+hard_cap_total_residues: null
+deposition_date_min: null
+deposition_date_max: null
+release_date_min: null
+release_date_max: null
+
+rsync_primary: "rsync.rcsb.org::ftp_data/structures/divided/mmCIF/"
+rsync_primary_port: 33444
+rsync_fallback: "rsync.ebi.ac.uk::pub/databases/pdb/data/structures/divided/mmCIF/"
+rsync_fallback_port: 873
+
+data_root: "data"

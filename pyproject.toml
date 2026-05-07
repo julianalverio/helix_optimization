@@ -1,0 +1,47 @@
+[project]
+name = "twistr"
+version = "0.1.0"
+description = "PDB protein-protein interaction pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "gemmi>=0.6.5",
+    "pandas>=2.1",
+    "pyarrow>=15.0",
+    "pyyaml>=6.0",
+    "numpy>=1.26",
+    "modal>=0.64",
+    "scipy>=1.11",
+    "freesasa>=2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+ml = [
+    "torch>=2.2",
+    # Was `lightning>=2.2` historically; the standalone `lightning` PyPI
+    # package was unlisted ~2026-04 and pip can no longer find any 2.x
+    # versions. `pytorch-lightning` provides the same `lightning.pytorch`
+    # namespace, so the `import lightning.pytorch as pl` lines still work.
+    "pytorch-lightning>=2.2",
+    "wandb>=0.16",
+    "rapidfuzz>=3.6",
+]
+
+[project.scripts]
+twistr = "twistr.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["twistr"]
+
+[tool.pytest.ini_options]
+markers = [
+    "network: integration tests that hit the live RCSB/EBI APIs",
+]
+testpaths = ["tests"]

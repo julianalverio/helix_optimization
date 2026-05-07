@@ -1,0 +1,30 @@
+tensors_output_dir: data/module2
+tensors_manifest_path: data/module2/module2_manifest.parquet
+output_dir: data/module3
+
+min_helix_segment_length: 6
+dssp_smoothing: true
+contact_distance_heavy_atom: 5.0
+max_helix_gap_residues: 7
+window_length_min: 8
+window_length_max: 15
+min_contacts_per_window: 2
+partner_use_sasa: true
+partner_sasa_threshold: 1.0
+partner_sequence_context: 2
+min_backbone_atom_completeness: 0.8
+random_seed: 42
+
+modal_workers: 200
+modal_cpu_per_worker: 1
+modal_memory_mb: 2048
+modal_batch_size: 10
+modal_timeout_seconds: 600
+modal_max_retries: 3
+modal_retry_backoff_seconds: 30
+
+test_mode: false
+test_n_entries: 100
+test_modal_workers: 5
+test_modal_batch_size: 5
+test_output_subdir: test_run

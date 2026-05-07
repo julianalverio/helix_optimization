@@ -1,0 +1,17 @@
+scannet_parquet: data/epitopes/patches_scannet.parquet
+pdb_dir: data/pdb
+output_path: data/epitopes/patches_final.parquet
+work_dir: data/epitopes/hotspot_work
+
+# Hotspot cutoff
+hotspot_score_threshold: 0.5
+hotspot_min_residues_for_cutoff: 5
+hotspot_top_fraction_fallback: 0.10
+
+# Cluster check
+cluster_neighbor_distance_a: 5.0
+cluster_hydrophobic_aromatic_set: [L, I, V, M, F, Y, W]
+cluster_aromatic_set: [F, Y, W]
+cluster_charged_polar_set: [K, R, H, D, E, N, Q, Y, W]
+cluster_mixed_hydrophobic_set: [L, I, V, M, F, Y, W]
+cluster_mixed_polar_set: [K, R, H, D, E, N, Q, Y, W]

@@ -1,0 +1,548 @@
+{
+  "pdbx_struct_assembly": {
+    "details": "author_and_software_defined_assembly",
+    "id": "1",
+    "method_details": "PISA",
+    "oligomeric_count": 21,
+    "oligomeric_details": "21-meric",
+    "rcsb_candidate_assembly": "Y",
+    "rcsb_details": "author_and_software_defined_assembly"
+  },
+  "pdbx_struct_assembly_gen": [
+    {
+      "assembly_id": "1",
+      "asym_id_list": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        "AA",
+        "BA",
+        "CA",
+        "DA",
+        "EA",
+        "FA",
+        "GA",
+        "HA",
+        "IA"
+      ],
+      "oper_expression": "1",
+      "ordinal": 1
+    }
+  ],
+  "pdbx_struct_oper_list": [
+    {
+      "id": "1",
+      "matrix_1_1": 1.0,
+      "matrix_1_2": 0.0,
+      "matrix_1_3": 0.0,
+      "matrix_2_1": 0.0,
+      "matrix_2_2": 1.0,
+      "matrix_2_3": 0.0,
+      "matrix_3_1": 0.0,
+      "matrix_3_2": 0.0,
+      "matrix_3_3": 1.0,
+      "name": "1_555",
+      "symmetry_operation": "x,y,z",
+      "type": "identity operation",
+      "vector_1": 0.0,
+      "vector_2": 0.0,
+      "vector_3": 0.0
+    }
+  ],
+  "rcsb_assembly_container_identifiers": {
+    "assembly_id": "1",
+    "entry_id": "1AON",
+    "interface_ids": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42"
+    ],
+    "rcsb_id": "1AON-1"
+  },
+  "rcsb_assembly_info": {
+    "assembly_id": "1",
+    "atom_count": 58870,
+    "branched_atom_count": 0,
+    "branched_entity_count": 0,
+    "branched_entity_instance_count": 0,
+    "deuterated_water_count": 0,
+    "entry_id": "1AON",
+    "hydrogen_atom_count": 0,
+    "modeled_polymer_monomer_count": 8015,
+    "na_polymer_entity_types": "Other",
+    "nonpolymer_atom_count": 196,
+    "nonpolymer_entity_count": 2,
+    "nonpolymer_entity_instance_count": 14,
+    "num_heterologous_interface_entities": 3,
+    "num_heteromeric_interface_entities": 1,
+    "num_homomeric_interface_entities": 4,
+    "num_interface_entities": 5,
+    "num_interfaces": 42,
+    "num_isologous_interface_entities": 2,
+    "num_na_interface_entities": 0,
+    "num_prot_na_interface_entities": 0,
+    "num_protein_interface_entities": 5,
+    "polymer_atom_count": 58674,
+    "polymer_composition": "heteromeric protein",
+    "polymer_entity_count": 2,
+    "polymer_entity_count_DNA": 0,
+    "polymer_entity_count_RNA": 0,
+    "polymer_entity_count_nucleic_acid": 0,
+    "polymer_entity_count_nucleic_acid_hybrid": 0,
+    "polymer_entity_count_protein": 2,
+    "polymer_entity_instance_count": 21,
+    "polymer_entity_instance_count_DNA": 0,
+    "polymer_entity_instance_count_RNA": 0,
+    "polymer_entity_instance_count_nucleic_acid": 0,
+    "polymer_entity_instance_count_nucleic_acid_hybrid": 0,
+    "polymer_entity_instance_count_protein": 21,
+    "polymer_monomer_count": 8337,
+    "selected_polymer_entity_types": "Protein (only)",
+    "solvent_atom_count": 0,
+    "solvent_entity_count": 0,
+    "solvent_entity_instance_count": 0,
+    "total_assembly_buried_surface_area": 31553.836598718455,
+    "total_number_interface_residues": 1866,
+    "unmodeled_polymer_monomer_count": 322
+  },
+  "rcsb_struct_symmetry": [
+    {
+      "kind": "Global Symmetry",
+      "oligomeric_state": "Hetero 21-mer",
+      "stoichiometry": [
+        "A14",
+        "B7"
+      ],
+      "symbol": "C7",
+      "type": "Cyclic",
+      "rotation_axes": [
+        {
+          "end": [
+            79.17581455840285,
+            -51.715286170719885,
+            -136.5370468381465
+          ],
+          "order": 7,
+          "start": [
+            79.13141670174768,
+            -51.55845984768862,
+            93.17345407830538
+          ]
+        }
+      ],
+      "clusters": [
+        {
+          "members": [
+            {
+              "asym_id": "O",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "U",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "T",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "S",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "R",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "Q",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "P",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            }
+          ],
+          "avg_rmsd": 0.16553198291389154
+        },
+        {
+          "members": [
+            {
+              "asym_id": "A",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "N",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "M",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "L",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "K",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "J",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "I",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "H",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "G",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "F",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "E",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "D",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "C",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "B",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            }
+          ],
+          "avg_rmsd": 7.8981182032587816
+        }
+      ]
+    },
+    {
+      "kind": "Pseudo Symmetry",
+      "oligomeric_state": "Hetero 21-mer",
+      "stoichiometry": [
+        "A7",
+        "B7",
+        "C7"
+      ],
+      "symbol": "C7",
+      "type": "Cyclic",
+      "rotation_axes": [
+        {
+          "end": [
+            79.18059483740629,
+            -51.71462026792309,
+            -136.53640229652555
+          ],
+          "order": 7,
+          "start": [
+            79.13231387183924,
+            -51.558009445801524,
+            93.18086671143803
+          ]
+        }
+      ],
+      "clusters": [
+        {
+          "members": [
+            {
+              "asym_id": "H",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "N",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "M",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "L",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "K",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "J",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "I",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            }
+          ],
+          "avg_rmsd": 0.27928673880730337
+        },
+        {
+          "members": [
+            {
+              "asym_id": "O",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "U",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "T",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "S",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "R",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "Q",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "P",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            }
+          ],
+          "avg_rmsd": 0.16481735092368588
+        },
+        {
+          "members": [
+            {
+              "asym_id": "A",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "G",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "F",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "E",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "D",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "C",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            },
+            {
+              "asym_id": "B",
+              "pdbx_struct_oper_list_ids": [
+                "1"
+              ]
+            }
+          ],
+          "avg_rmsd": 0.1730172951961929
+        }
+      ]
+    }
+  ],
+  "rcsb_struct_symmetry_lineage": [
+    {
+      "depth": 0,
+      "id": "Global Symmetry",
+      "name": "Global Symmetry"
+    },
+    {
+      "depth": 3,
+      "id": "Global Symmetry.Cyclic.C7.Hetero 21-mer",
+      "name": "Hetero 21-mer"
+    },
+    {
+      "depth": 0,
+      "id": "Pseudo Symmetry",
+      "name": "Pseudo Symmetry"
+    },
+    {
+      "depth": 1,
+      "id": "Pseudo Symmetry.Cyclic",
+      "name": "Cyclic"
+    },
+    {
+      "depth": 3,
+      "id": "Pseudo Symmetry.Cyclic.C7.Hetero 21-mer",
+      "name": "Hetero 21-mer"
+    },
+    {
+      "depth": 1,
+      "id": "Global Symmetry.Cyclic",
+      "name": "Cyclic"
+    },
+    {
+      "depth": 2,
+      "id": "Global Symmetry.Cyclic.C7",
+      "name": "C7"
+    },
+    {
+      "depth": 2,
+      "id": "Pseudo Symmetry.Cyclic.C7",
+      "name": "C7"
+    }
+  ],
+  "rcsb_id": "1AON-1",
+  "rcsb_struct_symmetry_provenance_code": "biojava-7.2.2"
+}
