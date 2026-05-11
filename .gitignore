@@ -1,32 +1,27 @@
-# Pipeline data outputs
-data/pdb/
-data/manifests/
-data/aux/
-data/module2/
-data/module3/
+# All runtime data + outputs (PDB cache, manifests, tensors, examples,
+# epitope-pipeline scratch, design/refold outputs, smoke artifacts, wandb,
+# logs, dunbrack vendored dataset, per-run PDB lists)
+twistr/runtime/data/pdb/
+twistr/runtime/data/manifests/
+twistr/runtime/data/aux/
+twistr/runtime/data/dunbrack/
+twistr/runtime/data/tensors/
+twistr/runtime/data/examples/
+twistr/runtime/data/epitopes/
+twistr/runtime/data/linkers/
+twistr/runtime/data/agent_inputs/
+twistr/runtime/data/checkpoints/
+twistr/runtime/data/targets*.txt
+twistr/runtime/outputs/
 
-# Dunbrack 2010 backbone-dependent rotamer dataset (license file vendored
-# alongside but excluded from git). Used by twistr/ml/losses/dunbrack.py.
-data/dunbrack/
+# Local caches (Protenix weights, PXDesign MSAs, batch calibration, etc.)
+.cache/
 
-# Epitope pipeline (MaSIF → ScanNet → PPI-hotspot → epitope-viz)
-# Covers all outputs and caches under data/epitopes/: patches.parquet,
-# patches_scannet.parquet, patches_final.parquet, *.diagnostics.json,
-# *.errors.log, MaSIF/ScanNet scratch + cached docker outputs, Modal hotspot
-# cache (hotspot_scores.json + .cache_sig sidecars), MaSIF debug JSONs, .pml
-# scripts, and the staged-PDB scratch.
-data/epitopes/
-
-# Per-run PDB list inputs (e.g. targets_a.txt, targets_3erd.txt)
-data/targets*.txt
-
-# Run logs and PIDs
-logs/
+# Run logs and PIDs (anywhere)
 *.log
 *.pid
 
-# ML training artifacts
-wandb/
+# ML training artifacts (anywhere)
 lightning_logs/
 mlruns/
 checkpoints/
@@ -34,13 +29,18 @@ checkpoints/
 *.pt
 *.pth
 
-# Stray large binaries (defense-in-depth)
+# Stray large binaries — defense-in-depth (anywhere)
 *.npz
 *.parquet
 *.h5
 *.hdf5
 *.pkl
 *.npy
+
+# RunPod smoke-test scratch (generated locally, never committed)
+twistr/dev/tools/runpod/smoke_test/.deploy_key
+twistr/dev/tools/runpod/smoke_test/.deploy_key.pub
+twistr/dev/tools/runpod/smoke_test/subset/
 
 # Python
 __pycache__/
@@ -64,13 +64,5 @@ build/
 .env
 .envrc
 
-# RunPod smoke-test scratch (generated locally, never committed)
-tools/runpod_smoke_test/.deploy_key
-tools/runpod_smoke_test/.deploy_key.pub
-tools/runpod_smoke_test/subset/
-
-# PXDesign run outputs (fetched back from the pod by tools/runpod_pxdesign/launch.py)
-design_outputs/
-
-# PXDesign MSA cache (populated on first run per target chain; large)
-.cache/pxdesign_msa/
+# Local Claude Code project instructions
+/CLAUDE.md

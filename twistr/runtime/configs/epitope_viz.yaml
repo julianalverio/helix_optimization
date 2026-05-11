@@ -1,0 +1,12 @@
+patches_parquet: runtime/data/epitopes/patches_final.parquet
+pdb_dir: runtime/data/pdb
+output_dir: runtime/data/epitopes/pml
+
+chain_color: gray70
+background_color: black
+sticks_colors:
+  hydrophobic: yellow
+  negative: blue
+  positive: red
+  polar: green
+zoom_padding_a: 5.0

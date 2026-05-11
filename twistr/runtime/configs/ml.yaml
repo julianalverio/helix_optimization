@@ -1,0 +1,118 @@
+# Hardware
+# 0 = local CPU; 1 = single GPU; 2-8 = DDP across that many GPUs.
+num_gpus: 1
+
+# Data
+manifest_path: runtime/data/examples/module3_manifest.parquet
+examples_root: runtime/data/examples
+cluster_path: runtime/data/examples/helix_clusters.parquet
+val_count: 1000
+seed: 0
+
+# DataLoader
+batch_size: 1
+# Parallel workers materially help on the RunPod MFS-mounted dataset:
+# loading is dominated by per-file metadata round-trips, and a single-
+# threaded loader stalls the main thread waiting on FUSE. 16 saturates
+# the I/O subsystem better than 8 on the larger A100 / A6000 pods.
+num_workers: 16
+
+# Trainer
+max_epochs: 2
+# -1 disables the step cap so max_epochs controls run length.
+max_steps: -1
+val_check_interval: 0.05
+# Checkpoints land on the persistent network volume (symlinked to data/ on
+# pod boot — see dev/tools/runpod/train/bootstrap.sh) so a pod restart resumes
+# from last.ckpt instead of starting over.
+checkpoint_dir: data/checkpoints
+
+# Interaction-matrix conditioning noise (training augmentation)
+interacting_residue_mask_count_min: 1
+interacting_residue_mask_count_max: 2
+non_interface_residue_mask_rate: 0.0
+max_zero_to_one_flip_rate: 0.10
+max_one_to_zero_flip_rate: 0.10
+positive_beta_mean: 0.75
+positive_beta_confidence: 15.0
+negative_beta_mean: 0.25
+negative_beta_confidence: 15.0
+
+# Architecture hyperparameters
+c_s: 128
+c_z: 64
+pairformer_blocks: 4
+n_heads_single: 4
+n_heads_pair: 4
+c_hidden_mul: 32
+c_hidden_pair_att: 16
+transition_n: 2
+pairformer_dropout: 0.1
+relpos_max_offset: 32
+
+learning_rate: 0.001
+
+helix_dihedral_weight: 1.0
+interaction_bce_weight: 5.0
+interaction_label_smoothing: 0.05
+
+# Geometric interaction losses (flat-bottom linear in Å / cosine units).
+# Down-weighted because at init the model emits identity rotations + zero
+# translations → every pair distance is multi-Å outside its band, so these
+# losses are O(10–100) per cell while BCE is O(0.7). 0.1 keeps them as a
+# regulariser without drowning out the contact-prediction signal.
+vdw_loss_weight: 0.1
+hbond_loss_weight: 0.1
+parallel_displaced_loss_weight: 0.1
+sandwich_loss_weight: 0.1
+t_shaped_loss_weight: 0.1
+
+# AF2-style steric clash penalty
+clash_loss_weight: 0.1
+
+# AF2-style between-residue bond geometry (C-N bond length + adjacent bond
+# angles). See twistr/pipeline/losses/backbone_continuity.py.
+backbone_continuity_weight: 0.1
+
+# Dunbrack 2010 rotamer-plausibility prior (helix and general libraries).
+# See twistr/pipeline/losses/dunbrack.py.
+dunbrack_weight: 0.1
+
+# Packing-neighbor loss. One-sided relu(n_target - count) penalty on
+# interface residues' packing atoms (aliphatic stubs ∪ aromatic ring atoms).
+# Counts neighbors in band [d_lo, d_hi] Å on residues with supervised
+# positions only (helix ∪ antigen backbone ∪ antigen interface sidechain).
+# Ramps from start_weight at step 0 to packing_loss_weight at step
+# geometric_handoff_ramp_steps. See twistr/pipeline/losses/packing.py.
+packing_loss_weight: 0.1
+packing_loss_start_weight: 0.1
+packing_loss_n_target: 4.0
+packing_loss_d_lo: 3.3
+packing_loss_d_hi: 5.5
+packing_loss_tau: 0.3
+
+# Atom14 coord MSE (Å²). Two losses:
+#  - antigen_backbone: non-helix backbone (slots 0-3), constant weight.
+#  - annealed: interface helix all-atoms + non-helix interface sidechains
+#    (slots 4-13), linearly ramped start→floor over `_steps`. Annealing is
+#    currently OFF (floor == start = 1.0): we observed that releasing the
+#    MSE anchor dropped predicted heavy-atom geometry out of the VDW /
+#    aromatic flat-bottom bands. Re-enable in lockstep with a geometric-loss
+#    handoff (see `geometric_handoff_ramp_steps` below).
+coord_mse_antigen_backbone_weight: 0.1
+coord_mse_annealed_start_weight: 1.0
+coord_mse_annealed_floor_weight: 1.0
+coord_mse_annealed_steps: 10000
+
+# Geometric-loss handoff. Each <loss>_loss_weight is the steady-state (end)
+# weight; <loss>_loss_start_weight is the value at step 0. Training linearly
+# interpolates start → end over `geometric_handoff_ramp_steps`, then holds at
+# end. Default (start == end, steps == 0) is a no-op constant weight. Wire
+# this in lockstep with `coord_mse_annealed_steps` when you re-enable MSE
+# annealing so the geometric pressure ramps up as the MSE anchor ramps down.
+geometric_handoff_ramp_steps: 0
+vdw_loss_start_weight: 0.1
+hbond_loss_start_weight: 0.1
+parallel_displaced_loss_start_weight: 0.1
+sandwich_loss_start_weight: 0.1
+t_shaped_loss_start_weight: 0.1

@@ -1,8 +1,29 @@
 [project]
 name = "twistr"
 version = "0.1.0"
-description = "PDB protein-protein interaction pipeline"
+description = "Computational pipeline for α-helix-mediated protein binder design: PDB curation → atom14 tensor extraction → ML training-example assembly → epitope selection on the target antigen → lead-optimization structure prediction → Rosetta-based linker design."
+readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+    { name = "Julian Alverio", email = "julian.a.alverio@gmail.com" },
+]
+license = { text = "Proprietary" }
+keywords = [
+    "protein design",
+    "protein engineering",
+    "structural biology",
+    "machine learning",
+    "computational biology",
+    "binder design",
+    "PPI",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Operating System :: POSIX",
+]
 dependencies = [
     "requests>=2.31",
     "gemmi>=0.6.5",
@@ -29,6 +50,11 @@ ml = [
     "wandb>=0.16",
     "rapidfuzz>=3.6",
 ]
+agent = [
+    "torch>=2.2",
+    "pytorch-lightning>=2.2",
+    "anthropic>=0.40",
+]
 
 [project.scripts]
 twistr = "twistr.cli:main"
@@ -39,9 +65,14 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["twistr"]
+exclude = [
+    "twistr/runtime",
+    "twistr/dev",
+]
 
 [tool.pytest.ini_options]
 markers = [
     "network: integration tests that hit the live RCSB/EBI APIs",
 ]
-testpaths = ["tests"]
+testpaths = ["twistr/dev/tests"]
+norecursedirs = ["twistr/external", "external", "*.egg", ".venv*", ".cache", "twistr/runtime"]

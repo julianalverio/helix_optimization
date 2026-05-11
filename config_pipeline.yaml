@@ -1,9 +1,0 @@
-stages: [masif, scannet, hotspot, viz]
-
-epitopes_config:    config_epitopes.yaml
-scannet_config:     config_scannet.yaml
-hotspot_config:     config_hotspot.yaml
-epitope_viz_config: config_epitope_viz.yaml
-
-pdb_dir:     data/pdb
-output_path: data/epitopes/patches_final.parquet

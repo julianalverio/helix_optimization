@@ -4,9 +4,9 @@ import argparse
 import logging
 from pathlib import Path
 
-from . import paths
-from .config import load_config, snapshot_now
-from .pipeline.curation import candidates, download, manifest, report, verify
+from .curation import paths
+from .curation.config import load_config, snapshot_now
+from .curation import candidates, download, manifest, report, verify
 
 
 def _data_root(cfg) -> Path:
@@ -49,27 +49,27 @@ def cmd_report(args):
 
 
 def cmd_tensors(args):
-    from .pipeline.tensors.driver import run_tensors
+    from .tensors.driver import run_tensors
     out = run_tensors(args.tensors_config, test_mode=args.test_mode, force=args.force)
     print(f"wrote {out}")
 
 
 def cmd_examples(args):
-    from .pipeline.examples.driver import run_examples
+    from .examples.driver import run_examples
     out = run_examples(args.examples_config, test_mode=args.test_mode, force=args.force)
     print(f"wrote {out}")
 
 
 def cmd_linkers(args):
-    from .pipeline.linkers.driver import main as run_linkers
+    from .linkers.driver import main as run_linkers
     out = run_linkers(Path(args.linkers_config))
     print(f"wrote {out}")
 
 
 def cmd_pipeline_run(args):
-    from .pipeline.manager.manager import run_pipeline
+    from .epitope_selection.manager.manager import run_pipeline
     pdb_list = Path(args.pdb_list) if args.pdb_list else None
-    out = run_pipeline(pdb_list, Path(args.pipeline_config))
+    out = run_pipeline(pdb_list, Path(args.epitope_selection_config))
     print(f"wrote {out}")
 
 
@@ -96,7 +96,7 @@ def cmd_run_all(args):
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="twistr")
-    parser.add_argument("--config", type=str, default="config.yaml")
+    parser.add_argument("--config", type=str, default="runtime/configs/curation.yaml")
     parser.add_argument("--verbose", "-v", action="store_true", help="DEBUG-level logging")
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -115,32 +115,32 @@ def main(argv: list[str] | None = None) -> None:
         sp.set_defaults(func=fn)
 
     sp_tensors = sub.add_parser("tensors")
-    sp_tensors.add_argument("--tensors-config", type=str, default="config_tensors.yaml")
+    sp_tensors.add_argument("--tensors-config", type=str, default="runtime/configs/tensors.yaml")
     sp_tensors.add_argument("--test-mode", action="store_true")
     sp_tensors.add_argument("--force", action="store_true")
     sp_tensors.set_defaults(func=cmd_tensors)
 
     sp_examples = sub.add_parser("examples")
-    sp_examples.add_argument("--examples-config", type=str, default="config_examples.yaml")
+    sp_examples.add_argument("--examples-config", type=str, default="runtime/configs/examples.yaml")
     sp_examples.add_argument("--test-mode", action="store_true")
     sp_examples.add_argument("--force", action="store_true")
     sp_examples.set_defaults(func=cmd_examples)
 
     sp_linkers = sub.add_parser("linkers",
         help="Design 4 linkers connecting 2 helices to a framework via RosettaRemodel")
-    sp_linkers.add_argument("--linkers-config", type=str, default="config_linkers.yaml")
+    sp_linkers.add_argument("--linkers-config", type=str, default="runtime/configs/linkers.yaml")
     sp_linkers.set_defaults(func=cmd_linkers)
 
-    sp_pipeline = sub.add_parser("pipeline-run",
+    sp_epitope_sel = sub.add_parser("epitope-selection-run",
         help="Run the epitope pipeline (MaSIF + ScanNet + PPI-hotspot + viz) "
              "with stages selected by the YAML's `stages: [...]` list. Only "
              "PPI-hotspotID's critires.sh runs on Modal; the rest is local.")
-    sp_pipeline.add_argument("--pipeline-config", type=str, default="config_pipeline.yaml")
-    sp_pipeline.add_argument("--pdb-list", type=str, default=None,
+    sp_epitope_sel.add_argument("--epitope-selection-config", type=str, default="runtime/configs/epitope_selection.yaml")
+    sp_epitope_sel.add_argument("--pdb-list", type=str, default=None,
                              help="Text file with one PDB ID per line. Required only when "
                                   "the first stage in the config is 'masif'; other stages "
                                   "derive the PDB set from the upstream parquet.")
-    sp_pipeline.set_defaults(func=cmd_pipeline_run)
+    sp_epitope_sel.set_defaults(func=cmd_pipeline_run)
 
     args = parser.parse_args(argv)
     logging.basicConfig(

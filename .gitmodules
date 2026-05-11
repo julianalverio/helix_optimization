@@ -19,3 +19,6 @@
 [submodule "twistr/external/ScanNet"]
 	path = twistr/external/ScanNet
 	url = https://github.com/jertubiana/ScanNet.git
+[submodule "twistr/external/ProteinMPNN"]
+	path = twistr/external/ProteinMPNN
+	url = https://github.com/dauparas/ProteinMPNN.git

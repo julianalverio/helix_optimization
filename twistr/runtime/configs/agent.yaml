@@ -1,0 +1,43 @@
+# Lead-optimization agent configuration. Drives a Claude Opus 4.7 agent
+# that iteratively mutates two designed helices bound to a target, scoring
+# each proposal against SC / EC / BSA and maintaining a Pareto frontier.
+
+# ---- Inputs ----------------------------------------------------------
+# Multi-chain PDB with target + 2 designed helices, pre-aligned in a
+# shared frame. The two helix chain IDs are listed under helix_chain_ids;
+# everything else is the target.
+target_pdb_path: runtime/data/agent_inputs/target_with_helices.pdb
+helix_chain_ids: ["A", "B"]
+target_chain_ids: ["C"]
+
+# Trained lead-optimization checkpoint. Hyperparameters travel inside the
+# checkpoint's hparams.cfg payload — no separate ml.yaml needed at
+# inference time.
+checkpoint_path: runtime/data/checkpoints/lead_opt_v1/last.ckpt
+
+# ---- Claude ---------------------------------------------------------
+claude_model: claude-opus-4-7
+max_tokens_per_turn: 4096
+
+# ---- Search budget --------------------------------------------------
+# Each propose_mutation tool call counts as one iteration (one model
+# forward pass). At ~1 s per call on an A100 (single example, N≲200),
+# 200 iterations ≈ 3-4 minutes wallclock excluding Claude latency.
+max_iterations: 200
+initial_mutation_budget: 1
+
+# ---- Metric hyperparameters ----------------------------------------
+interface_contact_distance: 5.5
+sc_distance_sigma: 1.5
+ec_distance_cutoff: 12.0
+bsa_probe_radius: 1.4
+
+# ---- Output ---------------------------------------------------------
+output_dir: runtime/outputs/agent
+save_intermediate_every: 25
+
+# ---- Inference ------------------------------------------------------
+device: cuda
+
+# ---- Reproducibility -----------------------------------------------
+seed: 0
